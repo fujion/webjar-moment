@@ -1,2 +1,3 @@
-# fujion-moment
-Web jar for https://github.com/moment/moment.
+# webjar-moment
+Web jar for moment.
+https://github.com/moment/moment
