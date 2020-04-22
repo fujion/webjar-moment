@@ -14,8 +14,6 @@
 	
 	<properties>
 		<skip.minification>true</skip.minification>
-		<src.url>https://github.com/moment/moment/archive/${src.version}.zip</src.url>
-		<src.top>moment-${src.version}</src.top>
 		<systemjs>
 			{
 				"paths": {
@@ -26,9 +24,21 @@
 			}			
 		</systemjs>
 	</properties>
-	
+
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>npm-install</id>
+						<configuration>
+							<skip>false</skip>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<artifactId>maven-antrun-plugin</artifactId>
 				<executions>
@@ -36,14 +46,22 @@
 						<id>precompile</id>
 						<configuration>
 							<target>
-								<get src="${src.url}" dest="${src.zipdir}/src.zip" />
-								<unzip src="${src.zipdir}/src.zip" dest="${src.tmpdir}" />
-								<move todir="${webjar.target}">
-									<fileset dir="${src.rootdir}/min" includes="moment.min.js" />
-								</move>
-								<move todir="${webjar.target}">
-									<fileset dir="${src.rootdir}" includes="min/*.*,moment.js,LICENSE,README.md" />
-								</move>
+								<copy tofile="${src.rootdir}/package.json" file="${basedir}/package-template.json">
+									<filterchain>
+										<expandproperties />
+									</filterchain>
+								</copy>
+							</target>
+						</configuration>
+					</execution>
+					<execution>
+						<id>postcompile</id>
+						<configuration>
+							<target>
+								<copy todir="${webjar.target}">
+									<fileset dir="${src.rootdir}/node_modules/moment" includes="moment.js,LICENSE,README.md,min/" />
+									<fileset dir="${src.rootdir}/node_modules/moment/min" includes="moment.min.js" />
+								</copy>
 							</target>
 						</configuration>
 					</execution>
