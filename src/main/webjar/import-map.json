@@ -1,0 +1,7 @@
+{
+  "imports": {
+    "momentjs": "moment.js",
+    "moment": "moment.js",
+    "moment-with-locales": "min/moment-with-locales.js"
+  }
+}

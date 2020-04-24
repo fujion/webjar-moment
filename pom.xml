@@ -14,15 +14,6 @@
 	
 	<properties>
 		<skip.minification>true</skip.minification>
-		<systemjs>
-			{
-				"paths": {
-					"momentjs": "moment.js",
-					"moment": "moment.js",
-					"moment-with-locales": "min/moment-with-locales.js"
-				}
-			}			
-		</systemjs>
 	</properties>
 
 	<build>
@@ -33,9 +24,6 @@
 				<executions>
 					<execution>
 						<id>npm-install</id>
-						<configuration>
-							<skip>false</skip>
-						</configuration>
 					</execution>
 				</executions>
 			</plugin>
