@@ -1,7 +1,7 @@
 {
-  "imports": {
-    "momentjs": "moment.js",
-    "moment": "moment.js",
-    "moment-with-locales": "min/moment-with-locales.js"
+  "paths": {
+    "momentjs": "dist/moment.js",
+    "moment": "dist/moment.js",
+    "moment-with-locales": "dist/moment-with-locales.js"
   }
 }

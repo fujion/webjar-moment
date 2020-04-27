@@ -47,8 +47,11 @@
 						<configuration>
 							<target>
 								<copy todir="${webjar.target}">
-									<fileset dir="${src.rootdir}/node_modules/moment" includes="moment.js,LICENSE,README.md,min/" />
-									<fileset dir="${src.rootdir}/node_modules/moment/min" includes="moment.min.js" />
+									<fileset dir="${src.rootdir}/node_modules/moment" includes="LICENSE,README.md" />
+								</copy>
+								<copy todir="${webjar.target}/dist">
+									<fileset dir="${src.rootdir}/node_modules/moment" includes="moment.js" />
+									<fileset dir="${src.rootdir}/node_modules/moment/min" />
 								</copy>
 							</target>
 						</configuration>
