@@ -9,15 +9,35 @@
 
 	<name>Moment Date Library</name>
 	<artifactId>webjar-moment</artifactId>
-	<version>2.29.4-1</version>
+	<version>2.29.4-1-SNAPSHOT</version>
 	<description>A lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates.</description>
 	
 	<properties>
 		<skip.minification>true</skip.minification>
+		<npm-install.skip>false</npm-install.skip>
 	</properties>
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.fujion.webjars</groupId>
+				<artifactId>webjar-validator-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>validate-webjar</id>
+						<configuration>
+							<rules>
+								<rule>file_exists import-map.json</rule>
+								<rule>file_exists README.md</rule>
+								<rule>file_contains LICENSE "Copyright (c) JS Foundation"</rule>
+								<rule>file_exists dist/locales.js</rule>
+								<rule>file_exists dist/moment.js</rule>
+								<rule>file_exists dist/moment-with-locales.js</rule>
+							</rules>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<artifactId>maven-antrun-plugin</artifactId>
 				<executions>
